@@ -31,8 +31,33 @@ class Calculator {
   }
 }
 
+function caesarCipher(str, shift) {
+  return str.split('').map(char => {
+    if (/[a-zA-Z]/.test(char)) {
+      const base = char === char.toUpperCase() ? 65 : 97;
+      const shiftedChar = String.fromCharCode(
+        ((char.charCodeAt(0) - base + shift) % 26 + 26) % 26 + base
+      );
+      return shiftedChar;
+    } else {
+      return char;
+    }
+  }).join('');
+}
+
+function analyzeArray(arr) {
+  return {
+    average: arr.reduce((sum, num) => sum + num, 0) / arr.length,
+    min: Math.min(...arr),
+    max: Math.max(...arr),
+    length: arr.length
+  };
+}
+
 module.exports = {
   capitalize,
   reverseString,
   Calculator,
+  caesarCipher,
+  analyzeArray,
 };
